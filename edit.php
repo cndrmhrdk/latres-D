@@ -2,7 +2,7 @@
     require "config/db.php";
 
     if(!isset($_GET['id_aset'])){
-        header("Location: index.php");
+        header("Location: dashboard.php");
         exit;
     }
 
@@ -45,6 +45,12 @@
             $statement->execute();
 
             $sukses = true;
+            $data_alat['serial_number'] = $serial_number;
+            $data_alat['nama_alat'] = $nama_alat;
+            $data_alat['merk'] = $merk_alat;
+            $data_alat['status'] = $status;
+            $data_alat['jumlah'] = $jumlah_unit;
+            $data_alat['url_gambar'] = $url_gambar;
         }  
     }
 ?>
@@ -87,6 +93,62 @@
             width: 100%;
             max-width: 600px;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .info-panel {
+            background: #1d1d22;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 30px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .info-panel h5 {
+            color: var(--accent-color);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-list {
+            margin: 0;
+            padding: 0;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-item i {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+        }
+
+        .info-item strong {
+            color: #fff;
+        }
+
+        .alert-note {
+            background: rgba(255, 193, 7, 0.08);
+            border: 1px solid rgba(255, 193, 7, 0.2);
+            border-radius: 10px;
+            padding: 12px 15px;
+            margin-top: 15px;
+            color: #ffc107;
+            font-size: 0.8rem;
+            line-height: 1.4;
         }
 
         .header-section {
@@ -160,11 +222,6 @@
                 padding: 25px;
             }
         }
-
-        input::placeholder{
-            color: white !important;
-            opacity: 50% !important;
-        }
     </style>
 </head>
 <body>
@@ -173,10 +230,38 @@
         <a href="index.php" class="btn-back">
             <i class="bi bi-arrow-left me-2"></i> Kembali ke Dashboard
         </a>
+        <div class="info-panel">
+            <h5>
+                <i class="bi bi-shield-lock-fill me-2"></i> Mode Penyuntingan
+            </h5>
+            
+            <p class="small opacity-25 mb-2">Anda sedang mengubah data asset. Pastikan untuk:</p>
+
+            <div class="info-list">
+                <div class="info-item">
+                    <i class="bi bi-check2-circle"></i>
+                    <span><strong>Status Terbaru:</strong> Verifikasi apakah unit baru saja kembali atau masuk servis.</span>
+                </div>
+                <div class="info-item">
+                    <i class="bi bi-check2-circle"></i>
+                    <span><strong>Akurasi Stok:</strong> Pastikan jumlah unit sesuai dengan ketersediaan fisik.</span>
+                </div>
+                <div class="info-item">
+                    <i class="bi bi-check2-circle"></i>
+                    <span><strong>Dokumentasi:</strong> Perbarui URL foto jika terdapat perubahan kondisi fisik.</span>
+                </div>
+            </div>
+
+            <div class="alert-note">
+                <div class="d-flex gap-2">
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                    <span>Perubahan ini akan langsung berdampak pada laporan ketersediaan alat di Dashboard secara real-time.</span>
+                </div>
+            </div>
+        </div>
 
         <div class="header-section">
             <h2>Edit Informasi Alat</h2>
-            <!-- <p class="small opacity-25">Masukkan detail spesifikasi alat multimedia baru</p> -->
         </div>
 
         <?php if($cek_duplikat): ?>
@@ -193,23 +278,23 @@
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label>Serial Number</label>
-                    <input type="text" class="form-control" name="serial_number" placeholder="<?= $data_alat['serial_number'] ?>" value="<?= $data_alat['serial_number'] ?>" required autocomplete="off">
+                    <input type="text" class="form-control" name="serial_number" value="<?= $data_alat['serial_number'] ?>" required autocomplete="off">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label>Nama Alat</label>
-                    <input type="text" class="form-control" name="nama_alat" placeholder="<?= $data_alat['nama_alat'] ?>" value="<?= $data_alat['nama_alat'] ?>" required>
+                    <input type="text" class="form-control" name="nama_alat" value="<?= $data_alat['nama_alat'] ?>" required>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label>Merk</label>
-                    <input type="text" class="form-control" name="merk" placeholder="<?= $data_alat['merk'] ?>" value="<?= $data_alat['merk'] ?>"  required>
+                    <input type="text" class="form-control" name="merk" value="<?= $data_alat['merk'] ?>" required>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label>Status</label>
                     <select class="form-select" name="status" required>
-                        <option value="" disabled selected>Pilih status</option>
+                        <option value="" disabled>Pilih status</option>
                         <option value="Tersedia" <?= $data_alat['status'] == 'Tersedia' ? 'selected' : '' ?>>Tersedia</option>
                         <option value="Dipinjam" <?= $data_alat['status'] == 'Dipinjam' ? 'selected' : '' ?>>Dipinjam</option>
                         <option value="Maintenance" <?= $data_alat['status'] == 'Maintenance' ? 'selected' : '' ?>>Maintenance</option>
@@ -219,19 +304,19 @@
 
             <div class="mb-3">
                 <label>Jumlah Unit</label>
-                <input type="number" class="form-control" name="jumlah_unit" placeholder="<?= $data_alat['jumlah'] ?>" value="<?= $data_alat['jumlah'] ?>"  required min="1">
+                <input type="number" class="form-control" name="jumlah_unit" value="<?= $data_alat['jumlah'] ?>" required min="1">
             </div>
 
             <div class="mb-4">
                 <label>Link Foto Alat (URL)</label>
                 <div class="input-group">
                     <span class="input-group-text bg-transparent border-secondary border-opacity-25 text-muted"><i class="bi bi-image"></i></span>
-                    <input type="text" class="form-control" name="link_foto_alat" placeholder="<?= $data_alat['url_gambar'] ?>" value="<?= $data_alat['url_gambar'] ?>"  required>
+                    <input type="text" class="form-control" name="link_foto_alat" value="<?= $data_alat['url_gambar'] ?>" required>
                 </div>
             </div>
 
             <button type="submit" class="btn-kirim">
-                <i class="bi bi-floppy2-fill"></i> Simpan Perubahan
+                <i class="bi bi-floppy2-fill me-2"></i> Simpan Perubahan
             </button>
         </form>
     </div>

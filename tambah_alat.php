@@ -75,6 +75,62 @@
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
         }
 
+        .info-panel {
+            background: #1d1d22;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 30px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .info-panel h5 {
+            color: var(--accent-color);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-list {
+            margin: 0;
+            padding: 0;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-item i {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+        }
+
+        .info-item strong {
+            color: #fff;
+        }
+
+        .alert-note {
+            background: rgba(255, 193, 7, 0.08);
+            border: 1px solid rgba(255, 193, 7, 0.2);
+            border-radius: 10px;
+            padding: 12px 15px;
+            margin-top: 15px;
+            color: #ffc107;
+            font-size: 0.8rem;
+            line-height: 1.4;
+        }
+
         .header-section {
             margin-bottom: 30px;
             text-align: center;
@@ -159,6 +215,37 @@
         <a href="index.php" class="btn-back">
             <i class="bi bi-arrow-left me-2"></i> Kembali ke Dashboard
         </a>
+
+        <!-- PANEL INFO TAMBAH ALAT (Sesuai Gambar Referensi) -->
+        <div class="info-panel">
+            <h5>
+                <i class="bi bi-plus-square-fill me-2"></i> Mode Registrasi Alat
+            </h5>
+            
+            <p class="small text-muted mb-2">Anda akan mendaftarkan unit baru. Pastikan untuk:</p>
+
+            <div class="info-list">
+                <div class="info-item">
+                    <i class="bi bi-check2-circle"></i>
+                    <span><strong>Serial Number:</strong> Pastikan sesuai dengan kode fisik yang tertempel pada unit.</span>
+                </div>
+                <div class="info-item">
+                    <i class="bi bi-check2-circle"></i>
+                    <span><strong>Kondisi Fisik:</strong> Pilih status sesuai keadaan barang saat masuk ke inventaris.</span>
+                </div>
+                <div class="info-item">
+                    <i class="bi bi-check2-circle"></i>
+                    <span><strong>Kelengkapan:</strong> Pastikan unit difoto dengan jelas dan link URL valid.</span>
+                </div>
+            </div>
+
+            <div class="alert-note">
+                <div class="d-flex gap-2">
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                    <span>Penambahan unit baru akan segera tampil di galeri aset dan dapat langsung diproses untuk peminjaman.</span>
+                </div>
+            </div>
+        </div>
 
         <div class="header-section">
             <h2>Tambah Unit Alat</h2>
