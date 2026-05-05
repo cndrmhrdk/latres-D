@@ -1,0 +1,227 @@
+/* =========================================
+   ROOT VARIABLES (PALET WARNA & FONT)
+========================================= */
+:root {
+    /* Background Colors ala Blackbox */
+    --bg-main: #060809;       /* Latar belakang halaman paling gelap */
+    --bg-card: #0d1117;       /* Latar belakang form/card */
+    
+    /* Border & Accents */
+    --border-color: #30363d;  
+    --input-focus-border: #8b949e; 
+    --accent-glow: rgba(255, 255, 255, 0.12); /* Efek glow tipis elegan */
+    
+    /* Text Colors */
+    --text-main: #c9d1d9;     /* Teks utama (abu-abu terang) */
+    --text-title: #ffffff;    /* Teks judul (putih bersih) */
+    --text-muted: #8b949e;    /* Teks placeholder/subtitle */
+    
+    /* Button Colors */
+    --btn-bg: #ffffff;
+    --btn-text: #000000;
+    --btn-hover: #e5e7eb;
+
+    /* Error Colors */
+    --error-bg: rgba(248, 81, 73, 0.1);
+    --error-border: rgba(248, 81, 73, 0.4);
+    --error-text: #ff7b72;
+
+    /* Typography */
+    --font-family: 'Outfit', sans-serif;
+}
+
+/* =========================================
+GLOBAL STYLES
+========================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+}
+
+body {
+    background-color: var(--bg-main); 
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* Efek gradasi radial super halus di background untuk dimensi */
+    background-image: radial-gradient(circle at 50% 0%, #151a23 0%, transparent 70%);
+}
+
+/* =========================================
+KEYFRAME ANIMATIONS
+========================================= */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* =========================================
+COMPONENTS
+========================================= */
+.register-card {
+    background-color: var(--bg-card);
+    padding: 45px 40px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 420px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+    
+    /* Animasi saat card pertama kali muncul */
+    animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.register-card h2 {
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text-title);
+    letter-spacing: -0.5px;
+}
+
+.register-card p.subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 15px;
+    margin-bottom: 35px;
+    font-weight: 300;
+}
+
+.alert {
+    padding: 14px 16px;
+    border-radius: 10px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    text-align: center;
+    background-color: var(--error-bg);
+    border: 1px solid var(--error-border);
+    color: var(--error-text);
+    animation: fadeInUp 0.4s ease-out; 
+}
+
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px 18px;
+    background-color: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    color: var(--text-title);
+    font-size: 15px;
+    
+    /* Animasi transisi yang lebih kaya */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.form-group input::placeholder {
+    color: var(--text-muted);
+}
+
+/* Interaksi saat mengetik (Focus) */
+.form-group input:focus {
+    outline: none;
+    border-color: var(--input-focus-border);
+    box-shadow: 0 0 0 4px var(--accent-glow);
+    /* Input sedikit terangkat saat diklik */
+    transform: translateY(-2px); 
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 16px;
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 15px;
+    
+    /* Animasi transisi tombol */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Interaksi Hover pada Tombol */
+.btn-submit:hover {
+    background-color: var(--btn-hover);
+    /* Tombol terangkat dan memberikan glow */
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px var(--accent-glow);
+}
+
+/* Interaksi saat Tombol Diklik (Active) */
+.btn-submit:active {
+    transform: translateY(1px);
+    box-shadow: 0 4px 10px var(--accent-glow);
+}
+
+/* =========================================
+   RESPONSIVE DESIGN (MOBILE)
+========================================= */
+
+/* Untuk layar dengan lebar maksimal 480px (Smartphone) */
+@media (max-width: 480px) {
+    body {
+        /* Memberikan sedikit ruang di pinggir agar card tidak menempel ke layar */
+        padding: 20px;
+        align-items: flex-start; /* Opsional: card mulai dari atas jika layar sangat pendek */
+        padding-top: 50px;
+    }
+
+    .register-card {
+        padding: 35px 25px; /* Mengurangi padding dalam agar input lebih luas */
+        border-radius: 12px; /* Sudut sedikit lebih tajam agar fit di layar kecil */
+    }
+
+    .register-card h2 {
+        font-size: 24px; /* Ukuran judul lebih kecil */
+    }
+
+    .register-card p.subtitle {
+        font-size: 14px;
+        margin-bottom: 25px;
+    }
+
+    .form-group input {
+        padding: 13px 15px; /* Input lebih ramping */
+        font-size: 14px;
+    }
+
+    .btn-submit {
+        padding: 14px;
+        font-size: 15px;
+    }
+}
+
+/* Untuk layar sangat kecil atau HP posisi Landscape */
+@media (max-height: 600px) {
+    body {
+        align-items: flex-start;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    
+    .register-card {
+        padding: 25px;
+    }
+    
+    .register-card p.subtitle {
+        margin-bottom: 15px;
+    }
+}
