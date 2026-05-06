@@ -2,7 +2,7 @@
     require "config/db.php";
 
     if(!isset($_GET['id_aset'])){
-        header("Location: dashboard.php");
+        header("Location: index.php");
         exit;
     }
 
@@ -198,7 +198,7 @@
                             <div class="label-sm">Ketersediaan Stok</div>
                             <div class="info-title"><?= $aset['jumlah'] ?> Unit</div>
                         </div>
-                        <a href="edit.php?id_aset=<?= $aset['id_asset'] ?>" class="btn-edit-data">
+                        <a href="edit.php?id_aset=<?= $aset['id_asset'] ?>&dari_detail=yes" class="btn-edit-data">
                             <i class="bi bi-pencil-square me-2"></i>Edit Data
                         </a>
                     </div>

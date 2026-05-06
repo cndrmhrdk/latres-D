@@ -1,10 +1,16 @@
 <?php
 session_start();
 
-session_unset();
-session_destroy();
+if(!isset($_GET['confirmed'])){
+    header("Location: index.php");
+    exit;
+} else {
+    session_unset();
+    session_destroy();
+    
+    header("Location: login.php");
+    exit;
+}
 
-header("Location: login.php");
-exit;
 
 ?>

@@ -3,7 +3,7 @@
 $hostname = "localhost";
 $username = "root";
 $password = "";
-$database = "latres_web_sid";
+$database = "latres_d";
 
 $connect = new mysqli($hostname, $username, $password, $database);
 

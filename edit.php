@@ -2,7 +2,7 @@
     require "config/db.php";
 
     if(!isset($_GET['id_aset'])){
-        header("Location: dashboard.php");
+        header("Location: index.php");
         exit;
     }
 
@@ -227,9 +227,16 @@
 <body>
 
     <div class="form-container">
-        <a href="index.php" class="btn-back">
-            <i class="bi bi-arrow-left me-2"></i> Kembali ke Dashboard
-        </a>
+        <?php if(isset($_GET['dari_detail'])){ ?>
+            <a href="detail.php?id_aset=<?= $id_asset ?>" class="btn-back">
+                <i class="bi bi-arrow-left me-2"></i> Kembali
+            </a>
+        <?php } else { ?>
+            <a href="index.php" class="btn-back">
+                <i class="bi bi-arrow-left me-2"></i> Kembali ke Dashboard
+            </a>
+        <?php } ?>
+
         <div class="info-panel">
             <h5>
                 <i class="bi bi-shield-lock-fill me-2"></i> Mode Penyuntingan

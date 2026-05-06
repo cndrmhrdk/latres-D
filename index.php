@@ -127,8 +127,8 @@
 
     <nav class="navbar sticky-top">
         <div class="container px-4">
-            <a class="navbar-brand"><i class="bi bi-camera-reels-fill me-2"></i> MAM</a>
-            <a href="logout.php" class="btn btn-outline-danger border-0 fw-bold">LOGOUT</a>
+            <a class="navbar-brand"><i class="bi bi-camera-reels me-2"></i> MAM</a>
+            <a href="logout.php?confirmed=yes" class="btn btn-outline-danger border-0 fw-bold">LOGOUT</a>
         </div>
     </nav>
 
@@ -138,7 +138,7 @@
             <div class="d-flex justify-content-between align-items-end mb-4">
                 <div>
                     <h2 class="fw-bold mb-1">Asset Inventory</h2>
-                    <p class="text-muted small mb-0">Manajemen unit kamera, drone, dan lensa agency.</p>
+                    <p class="opacity-25 small mb-0">Manajemen unit kamera, drone, dan lensa agency.</p>
                 </div>
                 <a href="tambah_alat.php" class="btn btn-tambah">
                     <i class="bi bi-plus-lg me-2"></i>Tambah Alat
@@ -172,7 +172,7 @@
                                         <td class="text-center">
                                             <a href="detail.php?id_aset=<?= $rows['id_asset'] ?>" class="action-icon text-primary bg-primary-subtle"><i class="bi bi-eye"></i></a>
                                             <a href="edit.php?id_aset=<?= $rows['id_asset'] ?>" class="action-icon text-warning bg-warning-subtle mx-1"><i class="bi bi-pencil-square"></i></a>
-                                            <a href="hapus.php?id_aset=<?= $rows['id_asset'] ?>" class="action-icon text-danger bg-danger-subtle"><i class="bi bi-trash"></i></a>
+                                            <a href="hapus.php?id_aset=<?= $rows['id_asset'] ?>" class="action-icon text-danger bg-danger-subtle" onclick="return confirm('Yakin mau hapus data ini?')"><i class="bi bi-trash"></i></a>
                                         </td>
                                     </tr>
                                 <?php elseif ($rows['status'] == "Maintenance") : ?>
@@ -186,7 +186,7 @@
                                         <td class="text-center">
                                             <a href="detail.php?id_aset=<?= $rows['id_asset'] ?>" class="action-icon text-primary bg-primary-subtle"><i class="bi bi-eye"></i></a>
                                             <a href="edit.php?id_aset=<?= $rows['id_asset'] ?>" class="action-icon text-warning bg-warning-subtle mx-1"><i class="bi bi-pencil-square"></i></a>
-                                            <a href="hapus.php?id_aset=<?= $rows['id_asset'] ?>" class="action-icon text-danger bg-danger-subtle"><i class="bi bi-trash"></i></a>
+                                            <a href="hapus.php?id_aset=<?= $rows['id_asset'] ?>" class="action-icon text-danger bg-danger-subtle" onclick="return confirm('Yakin mau hapus data ini?')"><i class="bi bi-trash"></i></a>
                                         </td>
                                     </tr>
                                 <?php else :?>
@@ -200,7 +200,7 @@
                                         <td class="text-center">
                                             <a href="detail.php?id_aset=<?= $rows['id_asset'] ?>" class="action-icon text-primary bg-primary-subtle"><i class="bi bi-eye"></i></a>
                                             <a href="edit.php?id_aset=<?= $rows['id_asset'] ?>" class="action-icon text-warning bg-warning-subtle mx-1"><i class="bi bi-pencil-square"></i></a>
-                                            <a href="hapus.php?id_aset=<?= $rows['id_asset'] ?>" class="action-icon text-danger bg-danger-subtle"><i class="bi bi-trash"></i></a>
+                                            <a href="hapus.php?id_aset=<?= $rows['id_asset'] ?>" class="action-icon text-danger bg-danger-subtle" onclick="return confirm('Yakin mau hapus data ini?')"><i class="bi bi-trash"></i></a>
                                         </td>
                                     </tr>
                                 <?php endif; ?>
